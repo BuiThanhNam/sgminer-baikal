@@ -356,7 +356,7 @@ static bool baikal_getinfo(struct cgpu_info *baikal)
     miner->fw_ver       = msg.data[0];
     miner->hw_ver       = msg.data[1];
     miner->bbg          = msg.data[2];
-    miner->clock        = msg.data[3] << 1;
+    miner->clock        = msg.data[3];
     miner->asic_count   = msg.data[4];
     miner->asic_count_r = msg.data[5];
     miner->asic_ver     = msg.data[6]; 
@@ -376,7 +376,7 @@ static bool baikal_setoption(struct cgpu_info *baikal, uint16_t clk, uint8_t mod
 
     msg.miner_id    = baikal->miner_id;
     msg.cmd         = BAIKAL_SET_OPTION;
-    msg.data[0] = (clk == 0) ? clk : ((clk / 10) % 20) + 2;
+    msg.data[0] = (clk == 0) ? clk : ((clk / 10) % 20) + 2.2;
     msg.data[1] = mode;
     msg.data[2] = temp;
     msg.data[3] = fanspeed;
